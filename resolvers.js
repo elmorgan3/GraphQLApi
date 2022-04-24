@@ -1,29 +1,9 @@
-const _ = require('lodash');
+const query = require('./resolvers/query');
+const session = require('./resolvers/session');
 
 module.exports = {
-  Query: {
-    sessions: (parent, args, { dataSources }, info) => {
-      return dataSources.sessionAPI.getSessions(args);
-    },
-    sessionById: (parent, { id }, { dataSources }, info) => {
-      return dataSources.sessionAPI.getSessionById(id);
-    },
-    speakers: (parent, args, { dataSources }, info) => {
-      return dataSources.speakerAPI.getSpeakers(args);
-    },
-    speakerById: (parent, { id }, { dataSources }, info) => {
-      return dataSources.speakerAPI.getSpeakerById(id);
-    },
-  },
-  Session: {
-    async speakers(session, args, { dataSources }) {
-      const speakers = await dataSources.speakerAPI.getSpeakers(args);
-      const returns = speakers.filter((speaker) => {
-        return _.filter(session.speakers, { id: speaker.id }).length > 0
-      })
-      return returns
-    }
-  },
+  Query: query,
+  Session: session,
   Speaker: {
     sessions(speaker, args, { dataSources }) {
       debugger
