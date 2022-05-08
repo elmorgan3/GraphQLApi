@@ -1,5 +1,6 @@
 const query = require('./resolvers/query');
 const session = require('./resolvers/session');
+const mutation = require('./resolvers/mutation')
 
 module.exports = {
   Query: query,
@@ -8,5 +9,6 @@ module.exports = {
     sessions(speaker, args, { dataSources }) {
       debugger
     }
-  }
+  },
+  Mutation: mutation
 };
