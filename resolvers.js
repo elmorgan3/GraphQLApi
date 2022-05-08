@@ -1,7 +1,8 @@
+const sessions = require('./data/sessions.json');
 module.exports = {
   Query: {
     sessions: (parent, args, { dataSources }, info) => {
-      return dataSources.sessionAPI.getSessions(args);
+      return sessions;
     },
     sessionById: (parent, { id }, { dataSources }, info) => {
       return dataSources.sessionAPI.getSessionById(id);
